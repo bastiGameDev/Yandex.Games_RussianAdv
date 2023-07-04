@@ -1,22 +1,34 @@
+using System.Runtime.InteropServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class MarkerControleer : MonoBehaviour
 {
+    [DllImport("__Internal")]
+    private static extern void ShowAdFullScreen();
+
     public TextMeshProUGUI _textMesh;
     [SerializeField] private AudioSource trashSound;
+    [SerializeField] private GameObject nextMarker;    
+    
 
     private void Start()
-    {
-        _textMesh.text = "Выкинь мусор";
+    {       
+        _textMesh.text = "Р’С‹РєРёРЅСЊ РјСѓСЃРѕСЂ";        
+
+        Debug.Log("AD SHOWED");
+
+        ShowAdFullScreen();
     }
+
+    
 
 
     public void OnTriggerEnter(Collider other)
     {
         Debug.Log("Entered");
-        _textMesh.text = "Нажми 'Е'";       
+        _textMesh.text = "РќР°Р¶РјРё 'Р•'";       
         
     }
 
@@ -27,13 +39,14 @@ public class MarkerControleer : MonoBehaviour
             Debug.Log("Pressed E");
             trashSound.Play();
             gameObject.SetActive(false);          
-            _textMesh.text = "Иди в свой гараж";
+            _textMesh.text = "РРґРё РІ СЃРІРѕР№ РіР°СЂР°Р¶";
+            nextMarker.SetActive(true);
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
         Debug.Log("Exited");
-        _textMesh.text = "Выкинь мусор";
+        _textMesh.text = "Р’С‹РєРёРЅСЊ РјСѓСЃРѕСЂ";
     }
 }

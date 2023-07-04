@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using static System.Net.Mime.MediaTypeNames;
 
 public class GarageMarker : MonoBehaviour
 {
+
     public TextMeshProUGUI _textMesh;
     [SerializeField] private TextMeshProUGUI _textHint;
 
     [SerializeField] private AudioSource doomerMusic;
+
+    [SerializeField] private GameObject nextMarker;
 
     private bool flagMusic = false;
     private bool isMusicPlayed = false;
@@ -52,6 +56,8 @@ public class GarageMarker : MonoBehaviour
             //gameObject.SetActive(false);
             _textMesh.text = "Ты забрал наушники. Направляйся в магазин (за гаражами направо) и наслаждайся прогулкой";
             _textHint.text = "Используй клавишу 'R' для воспроизведения/паузы музыки";
+
+            nextMarker.SetActive(true);
         }
     }
 
